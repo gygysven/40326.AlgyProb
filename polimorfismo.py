@@ -1,10 +1,10 @@
 class PagoPaypal:
     def procesar(self, monto):
-        print(f"Procesando ${monto} vía PayPal.")
+        print(f"Procesando ${monto} vía PayPal (Redirrecionando...)")
         
 class PagoTarjeta:
     def procesar(self, monto):
-        print(f"Procesando ${monto} vía Tarjeta (Validando CVV)")
+        print(f"Procesando ${monto} vía Tarjeta (Validando CVV...)")
 
 def realizar_cobro(metodo_pago, monto):
     metodo_pago.procesar(monto)
