@@ -14,3 +14,4 @@ class Vehiculo:
         # MÉTODO frenar():
         def frenar(self):
             print(f"El vehículo {self.marca} ha frenado.")
+            
