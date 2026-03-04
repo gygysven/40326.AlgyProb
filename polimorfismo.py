@@ -13,4 +13,4 @@ pago1 = PagoPaypal()
 pago2 = PagoTarjeta()
 
 realizar_cobro(pago1, 100)
-realizar_cobro(pago2, 250)
+realizar_cobro(pago2, 250)       
