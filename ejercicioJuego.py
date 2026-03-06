@@ -1,4 +1,4 @@
-# SIMULADOR DE JUEGO:
+# SIMULADOR DE JUEGO:    
 
 class Personaje:
     def __init__(self, nombre, vida, ataque, defensa):
