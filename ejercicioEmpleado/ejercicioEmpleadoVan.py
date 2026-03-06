@@ -7,21 +7,25 @@ class Empleado:
         self.salario_mensual = salario_mensual
     
     def describir(self):
-        print(f"{self.nombre} es {self.cargo} y gana {self.salario_mensual}.")
-
+        print(f"{self.nombre} es {self.cargo} y gana {self.salario_mensual:.2f} al mes.")
+    
     def calcular_anual(self):
-        return f"{self.salario_mensual*12}"
+        return f"{self.salario_mensual*12:.2f}"
     
     def aumentar_sueldo(self, porcentaje):
         aumento = self.salario_mensual*(porcentaje/100)
         self.salario_mensual += aumento
-        print(f"Nuevo salario: {self.salario_mensual}")
+        print(f"Nuevo salario: {self.salario_mensual:.2f}")
 
 empleado1= Empleado("Ana", "Coordinadora", 2000)
 empleado1.describir()
+
+empleado2= Empleado("Luis", "Analista", 1500)
+empleado2.describir()
 
 salario_anual = empleado1.calcular_anual()
 print(f"Su salario anual es de: ${salario_anual}")
 
 porcentaje = int(input("Ingrese el porcentaje de aumento: "))
-amuntar_sueldo = empleado1.aumentar_sueldo(porcentaje)
+aumentar_sueldo = empleado1.aumentar_sueldo(porcentaje)
+
