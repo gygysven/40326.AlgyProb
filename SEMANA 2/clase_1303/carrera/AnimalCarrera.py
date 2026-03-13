@@ -10,9 +10,11 @@ class AnimalCarrera:
 
     def correr(self):
         distancia_avanzada = self.velocidad_base + random.randint(-1,3)
+        self.posicion += max (0, distancia_avanzada)
+
         # Limitar el avance
         if self.posicion > self.pista_longitud:
-            self.posicion = self.pista_longitud
+            self.posicion += self.pista_longitud
 
     def es_ganador(self) -> bool:
         return self.posicion>=self.pista_longitud
