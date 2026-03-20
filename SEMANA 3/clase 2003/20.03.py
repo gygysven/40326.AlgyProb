@@ -8,7 +8,7 @@ class Libro:
         self.precio_alquiler = precio_alquiler
 
     def mostrar_ficha(self):
-        print(f"\n\n{'=' *20} FICHA DEL LIBRO {'=' *20}")
+        print(f"\n\n{'=' * 20} FICHA DEL LIBRO {'=' * 20}")
         print(f"Código: {self.codigo}")
         print(f"Título: {self.titulo}")
         print(f"Autor: {self.autor}")
@@ -17,7 +17,8 @@ class Libro:
     def obtener_precio_alquiler(self):
         return self.precio_alquiler
 
-class Usuario: 
+
+class Usuario:
     def __init__(self, id, nombre, nivel_membresia):
         self.id = id
         self.nombre = nombre
@@ -30,10 +31,11 @@ class Usuario:
             print(f"\nUsuario {self.nombre} es de nivel Básica y tiene acceso a alquileres estándar.")
 
     def mostrar_ficha_usuario(self):
-        print(f"\n{'=' *20} FICHA DEL USUARIO {'=' *20}")
+        print(f"\n{'=' * 20} FICHA DEL USUARIO {'=' * 20}")
         print(f"ID: {self.id}")
         print(f"Nombre: {self.nombre}")
         print(f"Nivel de Membresía: {self.nivel_membresia}")
+
 
 class Prestamo:
     contador_folio = 1
@@ -46,35 +48,37 @@ class Prestamo:
         self.usuario = usuario
         libros_alquilados.append(self)
 
-    def añadir_libros(self):
-        self.libros.append(libro1)
-        self.libros.append(libro2)
+    def añadir_libros(self, *libros):
+        for libro in libros:
+            self.libros.append(libro)
         print(f"\nLibros añadidos al préstamo con folio {self.folio} para el usuario {self.usuario.nombre}.")
 
-    def calcular_subtotal(self):
+    def subtotal(self):
         return sum(libro.obtener_precio_alquiler() for libro in self.libros)
 
     def recargo_mora(self, dias_retraso):
-        self.recargo = self.calcular_subtotal() * 0.10 * dias_retraso
+        self.recargo = self.subtotal() * 0.10 * dias_retraso
 
     def calcular_total(self):
-        return self.calcular_subtotal() + self.recargo
+        return self.subtotal() + self.recargo
 
     def autor_coincide(self, autor):
         contador = 0
         for libro in self.libros:
             if libro.autor.lower() == autor.lower():
                 contador += 1
+
         if contador == 0:
             print(f"No hay libros alquilados del autor '{autor}'.")
+        else:
+            print(f"Hay {contador} libro(s) alquilado(s) del autor '{autor}'.")
 
-    
     def resumen_prestamo(self):
         print("\n--- Resumen del Préstamo ---")
         print(f"Folio: {self.folio}")
         print(f"Usuario: {self.usuario.nombre}")
         print(f"Cantidad de libros: {len(self.libros)}")
-        print(f"Subtotal: ${self.calcular_subtotal():.2f}")
+        print(f"Subtotal: ${self.subtotal():.2f}")
         print(f"Recargo: ${self.recargo:.2f}")
         print(f"Total final: ${self.calcular_total():.2f}")
 
@@ -85,19 +89,20 @@ class Prestamo:
         print("Libros:")
         for libro in self.libros:
             print(f"- {libro.titulo} | {libro.autor} | ${libro.precio_alquiler:.2f}")
-        print(f"Subtotal: ${self.calcular_subtotal():.2f}")
+        print(f"Subtotal: ${self.subtotal():.2f}")
         print(f"Recargo: ${self.recargo:.2f}")
         print(f"Total: ${self.calcular_total():.2f}")
         print("==============================")
 
+    @staticmethod
     def mostrar_bienvenida():
         print("Bienvenido al Sistema de Préstamos - Biblioteca Tech")
 
-
+    @staticmethod
     def calcular_seguro_proteccion(total):
         return total * 0.05
 
-
+    @staticmethod
     def reporte_biblioteca(prestamos):
         cantidad = len(prestamos)
         total_recaudado = sum(p.calcular_total() for p in prestamos)
@@ -113,6 +118,7 @@ class Prestamo:
         print(f"Dinero total recaudado: ${total_recaudado:.2f}")
         print(f"Folio con monto más alto: {folio_mayor}")
 
+
 usuario1 = Usuario(id="0001", nombre="Juan Pérez", nivel_membresia="Premium")
 usuario2 = Usuario(id="0002", nombre="María Gómez", nivel_membresia="Básica")
 
@@ -125,8 +131,13 @@ prestamo1 = Prestamo(usuario1)
 prestamo2 = Prestamo(usuario2)
 
 Prestamo.mostrar_bienvenida()
-prestamo1.añadir_libros()
-prestamo1.resumen_prestamo()    
+
+prestamo1.añadir_libros(libro1, libro2)
+prestamo1.resumen_prestamo()
 prestamo1.imprimir_recibo_detallado()
+
 prestamo1.recargo_mora(dias_retraso=5)
 prestamo1.resumen_prestamo()
+
+prestamo1.autor_coincide("George Orwell")
+Prestamo.reporte_biblioteca(libros_alquilados)
