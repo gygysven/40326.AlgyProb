@@ -1,0 +1,10 @@
+tareas = ["Configurar Servidor", "Revisar API", "Actualizar Docs"]
+
+def gestionar_tareas(accion, tarea, nueva_tarea=None):
+    """
+    Acciones: 'buscar', 'modificar', 'eliminar'
+    """
+    if accion == "buscar":
+        if tarea in tareas:
+            idx = tareas.index(tarea)
+            tareas[idx]

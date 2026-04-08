@@ -27,7 +27,7 @@ print(f"pop(2): {lista_numeros}")              # Elimina el indice 2: [10, 20, 3
 lista_numeros.remove(40)
 print(f"remove(40): {lista_numeros}")
 
-del lista_numeros[1]                            # Elimina el indice 1: [10, 30, 50, 70]limia el indice 1: [10, 30, 50, 70]
+del lista_numeros[1]                            # Elimina el indice 1: [10, 30, 50, 70]
 print(f"del lista_numeros[1]: {lista_numeros}")
 
 # 3. BUSQUEDA Y ORDENAMIENTO
